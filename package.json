@@ -1,6 +1,6 @@
 {
     "name": "vue3-persist-storages",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "赋予 pinia 持久化的能力",
     "main": "dist/index.min.js",
     "module": "dist/index.esm.js",
