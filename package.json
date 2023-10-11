@@ -1,0 +1,60 @@
+{
+    "name": "vue3-persist-storages",
+    "version": "0.0.1",
+    "description": "赋予 pinia 持久化的能力",
+    "main": "dist/index.min.js",
+    "module": "dist/index.esm.js",
+    "author": "caoguanjie",
+    "type": "module",
+    "scripts": {
+        "dev": "rollup -c -w",
+        "build": "rollup -c"
+    },
+    "files": [
+        "dist"
+    ],
+    "keywords": [
+        "pinia",
+        "persist",
+        "vuex",
+        "vue3",
+        "persiststate",
+        "localforage",
+        "vue",
+        "pinia-plugin",
+        "pinia-plugin-persist",
+        "pinia-plugin-persistedstate"
+    ],
+    "license": "ISC",
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^25.0.4",
+        "@rollup/plugin-json": "^6.0.0",
+        "@rollup/plugin-node-resolve": "^15.1.0",
+        "@types/js-cookie": "^3.0.4",
+        "@types/lodash": "^4.14.197",
+        "@typescript-eslint/eslint-plugin": "^6.4.0",
+        "@typescript-eslint/parser": "^6.4.0",
+        "eslint": "^8.47.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "prettier": "^3.0.2",
+        "rollup": "^3.28.0",
+        "rollup-plugin-dts": "^6.0.0",
+        "rollup-plugin-typescript2": "^0.35.0",
+        "rollup-plugin-uglify": "^6.0.4",
+        "typescript": "^5.1.6"
+    },
+    "peerDependencies": {
+        "pinia": "^2.1.4",
+        "vue": "^3.2"
+    },
+    "dependencies": {
+        "@types/crypto-js": "^4.1.2",
+        "crypto-js": "^4.1.1",
+        "js-cookie": "^3.0.5",
+        "localforage": "1.10.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:sanxin-lin/pinia-persist.git"
+    }
+}

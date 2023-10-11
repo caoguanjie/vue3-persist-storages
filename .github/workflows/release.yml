@@ -1,0 +1,38 @@
+name: Publish Package to npmjs
+
+on:
+    push:
+      tags:
+        - 'v*' # Push even
+
+jobs:
+  deploy-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          # 如果你文档需要 Git 子模块，取消注释下一行
+          # submodules: true
+      - name: 设置 Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install pnpm
+        id: pnpm-install
+        uses: pnpm/action-setup@v2
+        with:
+            run_install: false
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+    
+      - name: Build packages
+        run: pnpm run build
+
+      - name: Publish on NPM
+        uses: JS-DevTools/npm-publish@v2
+        with:
+          access: public
+          token: ${{ secrets.NPM_TOKEN }}
