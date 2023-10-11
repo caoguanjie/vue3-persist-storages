@@ -2,9 +2,8 @@ name: Publish Package to npmjs
 
 on:
     push:
-      tags:
-        - 'v*' # Push even
-
+        branches:
+          - main
 jobs:
   deploy-release:
     runs-on: ubuntu-latest
