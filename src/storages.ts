@@ -1,8 +1,8 @@
 /*
  * @Author: caoguanjie 
  * @Date: 2023-10-11 16:36:00 
- * @Last Modified by:   caoguanjie 
- * @Last Modified time: 2023-10-11 16:36:00 
+ * @Last Modified by: caoguanjie
+ * @Last Modified time: 2023-10-11 19:36:30
  */
 
 import { IStorageOption } from './types';
@@ -100,6 +100,6 @@ export class CreateStorage {
 
 }
 
-export const storage = new CreateStorage()
 
-export default storage
+
+export default CreateStorage

@@ -1,8 +1,9 @@
+
 /*
  * @Author: caoguanjie 
  * @Date: 2023-10-11 16:35:34 
- * @Last Modified by:   caoguanjie 
- * @Last Modified time: 2023-10-11 16:35:34 
+ * @Last Modified by: caoguanjie
+ * @Last Modified time: 2023-10-11 19:35:53
  */
 
 import * as localforage from 'localforage';
@@ -14,6 +15,7 @@ import {
     setEncryptionKey,
     handleDecryptData,
     handleEncryptData,
+    removeEmpty,
 } from './utils';
 import { fitslog } from './logger';
 
@@ -27,7 +29,8 @@ export class CreateLocalForage {
     private encryption: boolean;
     private encryptionKey: string;
     constructor(option: IStorageOption & LocalForageOptions = {}) {
-        this.lcalForageConfig = {
+        // 如果多余的属性是undefiend,会导致初始化indexeddb报错
+        this.lcalForageConfig = removeEmpty({
             driver: option.driver ?? [
                 localforage.INDEXEDDB,
                 localforage.WEBSQL,
@@ -38,7 +41,7 @@ export class CreateLocalForage {
             description: option.description,
             name: option.name ?? 'Vue3PersistStorage',
             storeName: option.storeName ?? 'DataSheet',
-        };
+        });
 
         this.config = {
             prefix: option.prefix ?? '',
@@ -139,7 +142,7 @@ export class CreateLocalForage {
 
                 if (_isOpenExpires) {
                     _value = {
-                        value,
+                        _value,
                         expires:
                             expires !== null ? new Date().getTime() + getExpiresTime(expires as number) : null,
                     };
@@ -235,6 +238,5 @@ export class CreateLocalForage {
     }
 }
 
-export const LocalForageStorage = new CreateLocalForage();
 
-export default LocalForageStorage;
+export default CreateLocalForage;

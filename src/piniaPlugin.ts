@@ -1,8 +1,8 @@
 /*
  * @Author: caoguanjie 
  * @Date: 2023-10-11 16:35:54 
- * @Last Modified by:   caoguanjie 
- * @Last Modified time: 2023-10-11 16:35:54 
+ * @Last Modified by: caogj
+ * @Last Modified time: 2023-10-11 19:33:54
  */
 
 import { PiniaPluginContext, StateTree, Store, SubscriptionCallbackMutation } from 'pinia'
@@ -71,7 +71,7 @@ const hydrateStore = async (store: Store, persist: IExtendPersist) => {
     const { storages, key, debug } = persist;
     try {
         const data: any = await storages!.getItem(key!);
-        fitslog.warning(data, `获取本地存储数据${key}:`)
+        // fitslog.warning(data, `获取本地存储数据${key}:`)
         if (data) {
             store.$patch(isPlainObject(data) ? data : JSON.parse(data));
         }
@@ -123,7 +123,8 @@ const getConfig = (persist: PersistOptions | PersistOptions[], store: Store, opt
 const init = (context: PiniaPluginContext, persist: TPersist, options: IPluginOption) => {
     const { store } = context;
     const { prefix = '', suffix = '', debug = false, name = "Vue3PersistStorage", storeName = 'DataSheet', encryption = false } = options;
-    const defaultConfig: IExtendPersist[] = [{
+
+    const strategies: IExtendPersist[] = !isBoolean(persist) ? getConfig(persist, store, { prefix, suffix, debug, name, storeName, encryption }) : [{
         type: 'indexedDB',
         name: name,
         storeName: storeName,
@@ -134,8 +135,7 @@ const init = (context: PiniaPluginContext, persist: TPersist, options: IPluginOp
         encryption: encryption ?? false,
         beforeRestore: undefined,
         afterRestore: undefined,
-    }]
-    const strategies: IExtendPersist[] = !isBoolean(persist) ? getConfig(persist, store, { prefix, suffix, debug, name, storeName, encryption, ...persist }) : defaultConfig;
+    }];
 
     strategies.forEach((strategy: IExtendPersist) => {
         const { beforeRestore, afterRestore } = strategy;
@@ -172,7 +172,7 @@ export const plugin = (context: PiniaPluginContext, _options: IPluginOption = {}
     const { persist } = options as unknown as { persist: TPersist };
 
     if (!validate(persist)) return;
-    fitslog.primary(persist)
+    // fitslog.primary(persist)
     init(context, persist, _options);
 };
 export const createPlugin = (options: IPluginOption) => {

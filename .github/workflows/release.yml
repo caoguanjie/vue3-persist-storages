@@ -3,7 +3,7 @@ name: Publish Package to npmjs
 on:
     push:
         branches:
-          - main
+        - 'v*'
 jobs:
   deploy-release:
     runs-on: ubuntu-latest

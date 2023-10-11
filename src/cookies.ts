@@ -1,14 +1,14 @@
 /*
  * @Author: caoguanjie 
- * @Date: 2023-10-11 16:35:24 
+ * @Date: 2023-10-11 19:35:30 
  * @Last Modified by:   caoguanjie 
- * @Last Modified time: 2023-10-11 16:35:24 
+ * @Last Modified time: 2023-10-11 19:35:30 
  */
-
 
 import Cookies from 'js-cookie'
 import { IStorageOption } from './types';
-import { getKey, handleDecryptData, handleEncryptData, setEncryptionKey } from './utils';
+import { getKey, handleDecryptData, handleEncryptData, setEncryptionKey } from "./utils"
+
 
 export class CreateCookies {
     private encryption: boolean;
@@ -67,6 +67,5 @@ export class CreateCookies {
 
 }
 
-export const CookiesStorage = new CreateCookies()
 
-export default CookiesStorage
+export default CreateCookies
