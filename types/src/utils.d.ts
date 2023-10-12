@@ -1,4 +1,4 @@
-import { PersistOptions } from './types';
+import { PersistOptions } from "./types";
 export declare const isPlainObject: (v: unknown) => v is PersistOptions;
 export declare const isBoolean: (v: unknown) => v is boolean;
 export declare const isArray: (v: unknown) => v is any[];
@@ -13,10 +13,10 @@ export declare function isProxy(value: unknown): boolean;
  */
 export declare function getExpiresTime(day: number): number;
 /**
- *
- * @param key
- * @returns 输出键值，例如指定前缀：Login。那么返回的是：LOGIN_KEY
- */
+*
+* @param key
+* @returns 输出键值，例如指定前缀：Login。那么返回的是：LOGIN_KEY
+*/
 export declare function getKey(key: string, prefix?: string, suffix?: string): string;
 /**
  * 随机生成任意长度的随机数
@@ -37,3 +37,4 @@ export declare function handleEncryptData(key: string, value: any): string;
  * @param encryption
  */
 export declare function handleDecryptData(key: string, value: string): any;
+export declare const removeEmpty: (obj: any) => {};

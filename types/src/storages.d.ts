@@ -1,12 +1,19 @@
 import { IStorageOption } from './types';
 export declare class CreateStorage {
+    /** 默认值： localStorage*/
     private storage;
-    private isOpenExpires;
-    private day;
-    private encryption;
-    private encryptionKey;
+    /** 前缀，会自动加到 key 值的前面，默认值：'' */
     private prefix;
+    /** 后缀，会自动加到 key 值的后面,默认值：''*/
     private suffix;
+    /** 是否开启有效期设置,默认值：false */
+    private isOpenExpires;
+    /** 有效期设置，和isOpenExpires配搭使用，单位：天, 默认值：7 天 */
+    private day;
+    /** 是否开启AES加密和解密数据， 默认值：false */
+    private encryption;
+    /** 加密时需要的密钥，自动生成，不需要设置 */
+    private encryptionKey;
     constructor(option?: IStorageOption);
     /**
      * @description 设置缓存
@@ -33,5 +40,4 @@ export declare class CreateStorage {
      */
     clear(): void;
 }
-export declare const storage: CreateStorage;
-export default storage;
+export default CreateStorage;

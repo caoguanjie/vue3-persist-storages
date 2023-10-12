@@ -63,5 +63,4 @@ export declare class CreateLocalForage {
       } */
     getSize(): Promise<string | null>;
 }
-export declare const LocalForageStorage: CreateLocalForage;
-export default LocalForageStorage;
+export default CreateLocalForage;

@@ -2,7 +2,7 @@
  * @Author: caoguanjie 
  * @Date: 2023-10-11 16:36:00 
  * @Last Modified by: caoguanjie
- * @Last Modified time: 2023-10-11 19:36:30
+ * @Last Modified time: 2023-10-12 16:00:35
  */
 
 import { IStorageOption } from './types';
@@ -11,13 +11,20 @@ import { getExpiresTime, getKey, handleDecryptData, handleEncryptData, setEncryp
 
 
 export class CreateStorage {
+    /** 默认值： localStorage*/
     private storage: Storage;
+    /** 前缀，会自动加到 key 值的前面，默认值：'' */
+    private prefix: string;
+    /** 后缀，会自动加到 key 值的后面,默认值：''*/
+    private suffix: string;
+    /** 是否开启有效期设置,默认值：false */
     private isOpenExpires: boolean;
+    /** 有效期设置，和isOpenExpires配搭使用，单位：天, 默认值：7 天 */
     private day: number
+    /** 是否开启AES加密和解密数据， 默认值：false */
     private encryption: boolean;
+    /** 加密时需要的密钥，自动生成，不需要设置 */
     private encryptionKey: string
-    private prefix: string; // 开发者能自定义一些键值的前缀，例如：prefix=fits，最后保存本地的键值有可能是fitslogin
-    private suffix: string; // 开发者能自定义一些键值的前缀，例如：prefix=fits，最后保存本地的键值有可能是fitslogin
     constructor(option: IStorageOption = {}) {
         const { prefix = '', suffix = '', storage = localStorage, isOpenExpires = false, day = 7, encryption = false } = option
         this.storage = storage;
@@ -28,7 +35,6 @@ export class CreateStorage {
         this.day = day ?? 7
         this.encryptionKey = setEncryptionKey(this.encryption)
     }
-
 
     /**
      * @description 设置缓存
