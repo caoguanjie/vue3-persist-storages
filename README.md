@@ -1,7 +1,7 @@
 
 # vue3-persist-storages
 
-## 前言
+### 前言
 众所周知，前端的存储方案主要是以下几种组成：
 * Cookies
 * LocalStorage、SessionStorage
