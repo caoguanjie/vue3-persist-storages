@@ -55,6 +55,6 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:sanxin-lin/pinia-persist.git"
+        "url": "git@github.com:caoguanjie/vue3-persist-storages.git"
     }
 }
