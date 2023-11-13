@@ -1,6 +1,6 @@
 {
     "name": "vue3-persist-storages",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "vue3的本地存储最全方案，集成了cookie、localStorage、sessionStorage、indexedDB、webSQL等所有前端数据存储的方式，也赋予 pinia 持久化的能力",
     "main": "dist/index.min.js",
     "module": "dist/index.esm.js",
