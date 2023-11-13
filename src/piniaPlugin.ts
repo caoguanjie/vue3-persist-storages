@@ -38,6 +38,10 @@ function getStorageObj(type: string, persist: IStorageOption) {
             _store = new CreateCookies(persist);
             break;
         }
+        case 'custom': {
+            _store = persist.storage;
+            break;
+        }
     }
     return _store
 }

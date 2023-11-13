@@ -30,16 +30,20 @@ export interface IPluginOption {
  * storage入参
  */
 export interface IStorageOption extends IPluginOption {
-    storage?: Storage;
+    storage?: Storage & CustomStorage;
     isOpenExpires?: boolean;
     day?: number;
 }
 export interface PersistOptions extends IStorageOption {
-    type?: 'storage' | 'indexedDB' | 'cookies';
+    type?: 'storage' | 'indexedDB' | 'cookies' | 'custom';
     key?: string;
     paths?: string[];
     beforeRestore?: (context: PiniaPluginContext) => void;
     afterRestore?: (context: PiniaPluginContext) => void;
+}
+export interface CustomStorage {
+    getItem<T>(key: string): Promise<T | null> | T;
+    setItem<T>(key: string, value: T): Promise<T | null> | T;
 }
 export type TPersist = boolean | PersistOptions | PersistOptions[];
 export type Store = PiniaPluginContext['store'];

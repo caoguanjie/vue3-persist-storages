@@ -504,6 +504,38 @@ persist: [
   ],
 ```
 
+
+### 实现自定义存储方式
+当使用pinia持久化时，发现以上所有存储方式都无法不合适时，你可以采取自定义的方式，定制数据的提取和存储，例如，要独立实现token字段存储，可以通过以下配置：
+```ts
+persist: [
+    {
+      type: 'indexedDB',
+      encryption: true, // 用户信息可以设置加密
+      paths: ["userInfo", "isRememberme", "loginInfo"],
+    },
+    {
+      key: 'accessToken',
+      type: 'custom', // token可以js-cookies保存，并且可以自定义设置键名为accessToken
+      paths: ["token"],
+      // storage的格式一定要按这个模式写setItem、getItem函数
+      storage: {
+        setItem(key: string, state: any) {
+          // 默认有效期是7天
+          const _state = JSON.parse(state);
+          return Cookies.set("accessToken", _state.token);
+        },
+        getItem(key: string) {
+          return JSON.stringify({
+            token: Cookies.get("accessToken"),
+          });
+        },
+      }
+    },
+  ],
+```
+
+
 ## 已知的问题
 1. 使用CreateLocalForage、CreateCookies、CreateStorage中的`setItem`方法，支持单独为某个键值的存储数据，设置有效时间，但是无法为单个数据设置加密和解密。
 2. pinia的`store.$subscribe`方法是监控所有模块的对象数据变化的，因此当数据量大的时候，复杂对象的监控会极其消耗性能，甚至造成卡顿的情况，在实际场景中，发现使用indexedDB存储数据超过100MB的时候，每次数据的保存，都会有卡顿的情况。性能差的电脑和手机端尤为明显。
