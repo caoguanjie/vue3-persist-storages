@@ -27,7 +27,7 @@ export class CreateStorage {
     private encryptionKey: string
     constructor(option: IStorageOption = {}) {
         const { prefix = '', suffix = '', storage = localStorage, isOpenExpires = false, day = 7, encryption = false } = option
-        this.storage = storage;
+        this.storage = storage as Storage;
         this.prefix = prefix
         this.suffix = suffix
         this.encryption = encryption

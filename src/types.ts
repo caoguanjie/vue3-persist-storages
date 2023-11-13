@@ -42,7 +42,7 @@ export interface IPluginOption {
  */
 export interface IStorageOption extends IPluginOption {
     // storage类型，有localStorage、sessionStroage（可选）
-    storage?: Storage & CustomStorage;
+    storage?: Storage | CustomStorage;
     // 是否开启有效期, 默认值：false
     isOpenExpires?: boolean;
     // 有效期默认几天, 默认值: 7天
