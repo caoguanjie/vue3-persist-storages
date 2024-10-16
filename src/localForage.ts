@@ -83,10 +83,10 @@ export class CreateLocalForage {
                         // 如果是加密过的字符串，先解密
                         item = handleDecryptData(this.encryptionKey, item);
                     }
-                    const { value, expires } = item;
+                    const { _value, expires } = item;
                     if (this.config.isOpenExpires && expires && expires >= Date.now()) {
                         // 在有效期内返回
-                        return Promise.resolve(value);
+                        return Promise.resolve(_value);
                     }
                     return Promise.resolve(item);
                 }
